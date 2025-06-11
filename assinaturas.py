@@ -255,8 +255,8 @@ if plano_escolhido:
         unsafe_allow_html=True
     )
 
-    with open(POLITICA_PDF_PATH, "rb") as file:
-            st.download_button(label="📄 Baixar PDF da Política de Uso",
+            with open(POLITICA_PDF_PATH, "rb") as file:
+                st.download_button(label="📄 Baixar PDF da Política de Uso",
                                data=file,
                                file_name="Politica_de_Uso_Assinaturas.pdf",
                                mime="application/pdf")
