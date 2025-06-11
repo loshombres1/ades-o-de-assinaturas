@@ -80,6 +80,27 @@ st.markdown(
     background-color: transparent;
     box-shadow: none;
 }
+    
+    @media (max-width: 768px) {
+    .card {
+        padding: 8px;
+        margin-bottom: 8px;
+    }
+    h2 {
+        font-size: 18px !important;
+        text-align: center;
+    }
+    h3 {
+        font-size: 16px !important;
+    }
+    .stButton > button {
+        font-size: 14px;
+        padding: 0.4em 0.8em;
+    }
+    .logo-container img {
+        max-width: 180px !important;
+    }
+}
     </style>
     """,
     unsafe_allow_html=True
