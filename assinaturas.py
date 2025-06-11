@@ -14,19 +14,26 @@ st.set_page_config(page_title="Clube de Assinatura Los Hombres", layout="wide")
 
 LOGO_PATH = "logo.png"
 
-# Criar 3 colunas, colocar a imagem na do meio
 col1, col2, col3 = st.columns([1.5,1,1])
 
 with col2:
-    st.image(LOGO_PATH, width=250)
-    st.markdown(
-        f"""
-        <div style='display: flex; justify-content: center; align-items: center; margin-top: 30px; margin-bottom: 10px;'>
-            <img src="{LOGO_PATH}" style='max-width: 250px; width: 100%; height: auto;'>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    with st.container():
+        st.markdown(
+            """
+            <style>
+            .logo-container {
+                margin-top: 30px;
+                margin-bottom: 5px;
+            }
+            </style>
+            <div class="logo-container">
+            """,
+            unsafe_allow_html=True
+        )
+        st.image(LOGO_PATH, width=250)
+        st.markdown("</div>", unsafe_allow_html=True)
+
+
 
 st.markdown(
     """
@@ -69,8 +76,8 @@ st.markdown(
     .card {
 
         padding: 10px;
-        border-radius: 6px;
-        margin-bottom: 6px;
+        border-radius: 10px;
+        margin-bottom: 5px;
         background-color: #000000;
     }
     </style>
@@ -224,35 +231,23 @@ if plano_escolhido:
         POLÍTICA DE USO — CLUBE DE ASSINATURA LOS HOMBRES
 Bem-vindo ao Clube Exclusivo Los Hombres! Ao aderir a um de nossos planos de assinatura, você declara estar ciente e de acordo com os termos e condições abaixo:
 1. PLANOS E VALIDADE
-•
-O Clube de Assinatura oferece planos mensais, renovados automaticamente a cada período de 30 dias.
-•
-Os serviços inclusos em cada plano estão descritos na oferta comercial no momento da adesão.
+•O Clube de Assinatura oferece planos mensais, renovados automaticamente a cada período de 30 dias.
+•Os serviços inclusos em cada plano estão descritos na oferta comercial no momento da adesão.
 2. REGRAS DE USO
-•
-A assinatura é pessoal e intransferível. Apenas o titular cadastrado poderá utilizar os serviços inclusos no plano.
-•
-O não uso dos serviços durante o período contratado não gera crédito para períodos futuros nem dá direito a reembolso.
-•
-As visitas deverão ser agendadas previamente, conforme disponibilidade da agenda da barbearia.
+•A assinatura é pessoal e intransferível. Apenas o titular cadastrado poderá utilizar os serviços inclusos no plano.
+•O não uso dos serviços durante o período contratado não gera crédito para períodos futuros nem dá direito a reembolso.
+•As visitas deverão ser agendadas previamente, conforme disponibilidade da agenda da barbearia.
 3. REEMBOLSO
-•
-Após o pagamento da assinatura, não haverá reembolso parcial ou total em caso de desistência ou não utilização dos serviços.
-•
-Em casos excepcionais (ex.: fechamento da unidade ou impossibilidade total de prestação de serviços), um reembolso proporcional poderá ser considerado.
+•Após o pagamento da assinatura, não haverá reembolso parcial ou total em caso de desistência ou não utilização dos serviços.
+•Em casos excepcionais (ex.: fechamento da unidade ou impossibilidade total de prestação de serviços), um reembolso proporcional poderá ser considerado.
 4. CANCELAMENTO
-•
-O cliente poderá solicitar o cancelamento a qualquer momento, sem multa, através do canal oficial de atendimento (WhatsApp ou e-mail informado).
-•
-O cancelamento será efetivado ao término do período vigente. Não haverá reembolso proporcional por dias não utilizados no mês corrente.
+•O cliente poderá solicitar o cancelamento a qualquer momento, sem multa, através do canal oficial de atendimento (WhatsApp ou e-mail informado).
+•O cancelamento será efetivado ao término do período vigente. Não haverá reembolso proporcional por dias não utilizados no mês corrente.
 5. CONDIÇÕES GERAIS
-•
-A barbearia se reserva o direito de revisar os valores e condições dos planos, mediante aviso prévio de 30 dias aos assinantes.
-•
-O não pagamento da renovação automática implicará no bloqueio do uso do plano até a regularização.
+•A barbearia se reserva o direito de revisar os valores e condições dos planos, mediante aviso prévio de 30 dias aos assinantes.
+•O não pagamento da renovação automática implicará no bloqueio do uso do plano até a regularização.
 6. ACEITE
-•
-Ao realizar a adesão ao Clube de Assinatura, o cliente declara ter lido, compreendido e aceito todos os termos aqui dispostos.""")
+•Ao realizar a adesão ao Clube de Assinatura, o cliente declara ter lido, compreendido e aceito todos os termos aqui dispostos.""")
         with open(POLITICA_PDF_PATH, "rb") as file:
             st.download_button(label="📄 Baixar PDF da Política de Uso",
                                data=file,
@@ -273,3 +268,17 @@ Ao realizar a adesão ao Clube de Assinatura, o cliente declara ter lido, compre
                 st.markdown(f"[Clique aqui para pagar]({planos[plano_escolhido]['link_pagamento']})")
             else:
                 st.error("Erro ao enviar o registro de aceite. Por favor, tente novamente ou entre em contato com a barbearia.")
+
+#=========== RODAPÉ==========
+
+st.markdown(
+    """
+    <div style='margin-top: 70px; padding-top: 20px; text-align: center; color: #888888; font-size: 12px; line-height: 1.4;'>
+    <p style='font-weight: bold; margin-bottom: 5px;'>Los Hombres Barbearia</p>
+    Rua 13 Norte, Lote 04 - Ed. Ilha de Manhattan - Águas Claras, Brasília - DF, 71909-720<br>
+    Telefone: (61) 3546-3241 | WhatsApp: (61) 99651-1331<br><br>
+    <em>Os preços e condições apresentados neste site podem sofrer alterações sem aviso prévio.</em>
+    </p>
+    """,
+    unsafe_allow_html=True
+)
