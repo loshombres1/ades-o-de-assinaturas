@@ -208,6 +208,7 @@ if st.session_state['plano_escolhido'] is None:
                 st.write(info['descricao'])
                 if st.button(f"Selecionar {plano}"):
                     st.session_state['plano_escolhido'] = plano
+                    st.rerun()
                 st.markdown("</div>", unsafe_allow_html=True)
 
     with col2:
@@ -219,6 +220,7 @@ if st.session_state['plano_escolhido'] is None:
                 st.write(info['descricao'])
                 if st.button(f"Selecionar {plano}"):
                     st.session_state['plano_escolhido'] = plano
+                    st.rerun()
                 st.markdown("</div>", unsafe_allow_html=True)
 
 else:
@@ -230,7 +232,8 @@ else:
     # Botão para voltar
     if st.button("🔄 Escolher outro plano"):
         st.session_state['plano_escolhido'] = None
-
+        st.rerun()
+        
     nome = st.text_input("Nome completo *")
     cpf = st.text_input("CPF *")
 
