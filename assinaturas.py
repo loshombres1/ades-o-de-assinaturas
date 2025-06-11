@@ -186,63 +186,50 @@ Data e hora do aceite: {data_hora}
         return False
 
 # === Interface: cards de planos ===
-# Garantir que plano_escolhido existe no session_state
+# Garantir que a variável exista no session_state
 if 'plano_escolhido' not in st.session_state:
     st.session_state['plano_escolhido'] = None
 
-plano_escolhido = st.session_state['plano_escolhido']
+# Lógica de exibição:
 
+if st.session_state['plano_escolhido'] is None:
+    # Mostrar todos os planos (como já está hoje)
+    planos_seg_a_qua = {k: v for k, v in planos.items() if "Seg a Qua" in k}
+    planos_todos_dias = {k: v for k, v in planos.items() if "Todos os Dias" in k}
 
-# Separar os planos
-planos_seg_a_qua = {k: v for k, v in planos.items() if "Seg a Qua" in k}
-planos_todos_dias = {k: v for k, v in planos.items() if "Todos os Dias" in k}
+    col1, col2 = st.columns(2)
 
-# Criar as duas colunas
-col1, col2 = st.columns(2)
+    with col1:
+        st.markdown("<h2 style='color:#AD9955;'>Planos Segunda a Quarta</h2>", unsafe_allow_html=True)
+        for plano, info in planos_seg_a_qua.items():
+            with st.container():
+                st.markdown(f"<div class='card'>", unsafe_allow_html=True)
+                st.markdown(f"<h3 style='color:#AD9955; border-bottom:1px solid #AD9955; padding-bottom:5px; margin-bottom:10px;'>{plano}</h3>", unsafe_allow_html=True)
+                st.write(info['descricao'])
+                if st.button(f"Selecionar {plano}"):
+                    st.session_state['plano_escolhido'] = plano
+                st.markdown("</div>", unsafe_allow_html=True)
 
-# Coluna da esquerda - Segunda a Quarta
-with col1:
-    st.markdown("<h2 style='color:#AD9955;'>Planos Segunda a Quarta</h2>", unsafe_allow_html=True)
+    with col2:
+        st.markdown("<h2 style='color:#AD9955;'>Planos Todos os Dias</h2>", unsafe_allow_html=True)
+        for plano, info in planos_todos_dias.items():
+            with st.container():
+                st.markdown(f"<div class='card'>", unsafe_allow_html=True)
+                st.markdown(f"<h3 style='color:#AD9955; border-bottom:1px solid #AD9955; padding-bottom:5px; margin-bottom:10px;'>{plano}</h3>", unsafe_allow_html=True)
+                st.write(info['descricao'])
+                if st.button(f"Selecionar {plano}"):
+                    st.session_state['plano_escolhido'] = plano
+                st.markdown("</div>", unsafe_allow_html=True)
 
-    for plano, info in planos_seg_a_qua.items():
-        with st.container():
-            st.markdown(f"<div class='card'>", unsafe_allow_html=True)
-            
-            st.markdown(f"<h3 style='color:#AD9955; border-bottom:1px solid #AD9955; padding-bottom:5px; margin-bottom:10px;'>{plano}</h3>", unsafe_allow_html=True)
-            
-            st.write(info['descricao'])
-            
-            if st.button(f"Selecionar {plano}"):
-                st.session_state['plano_escolhido'] = plano
-            
-            st.markdown("</div>", unsafe_allow_html=True)
-
-# Coluna da direita - Todos os Dias
-with col2:
-    st.markdown("<h2 style='color:#AD9955;'>Planos Todos os Dias</h2>", unsafe_allow_html=True)
-
-    for plano, info in planos_todos_dias.items():
-        with st.container():
-            st.markdown(f"<div class='card'>", unsafe_allow_html=True)
-            
-            st.markdown(f"<h3 style='color:#AD9955; border-bottom:1px solid #AD9955; padding-bottom:5px; margin-bottom:10px;'>{plano}</h3>", unsafe_allow_html=True)
-            
-            st.write(info['descricao'])
-            
-            if st.button(f"Selecionar {plano}"):
-                st.session_state['plano_escolhido'] = plano
-            
-            st.markdown("</div>", unsafe_allow_html=True)
-
-
-
-# === Fluxo pós seleção ===
-if 'plano_escolhido' in st.session_state:
+else:
+    # Mostrar apenas o plano escolhido
     plano_escolhido = st.session_state['plano_escolhido']
-
-if plano_escolhido:
     st.success(f"Plano selecionado: {plano_escolhido}")
     st.write(f"**Descrição:** {planos[plano_escolhido]['descricao']}")
+
+    # Botão para voltar
+    if st.button("🔄 Escolher outro plano"):
+        st.session_state['plano_escolhido'] = None
 
     nome = st.text_input("Nome completo *")
     cpf = st.text_input("CPF *")
