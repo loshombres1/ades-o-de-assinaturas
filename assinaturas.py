@@ -74,12 +74,12 @@ st.markdown(
         color: #AD9955 !important;
     }
     .card {
-
-        padding: 10px;
-        border-radius: 10px;
-        margin-bottom: 5px;
-        background-color: #000000;
-    }
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+}
     </style>
     """,
     unsafe_allow_html=True
@@ -230,23 +230,23 @@ if plano_escolhido:
         st.write("""
         POLÍTICA DE USO — CLUBE DE ASSINATURA LOS HOMBRES
 Bem-vindo ao Clube Exclusivo Los Hombres! Ao aderir a um de nossos planos de assinatura, você declara estar ciente e de acordo com os termos e condições abaixo:
-1. PLANOS E VALIDADE
-•O Clube de Assinatura oferece planos mensais, renovados automaticamente a cada período de 30 dias.
-•Os serviços inclusos em cada plano estão descritos na oferta comercial no momento da adesão.
-2. REGRAS DE USO
-•A assinatura é pessoal e intransferível. Apenas o titular cadastrado poderá utilizar os serviços inclusos no plano.
-•O não uso dos serviços durante o período contratado não gera crédito para períodos futuros nem dá direito a reembolso.
-•As visitas deverão ser agendadas previamente, conforme disponibilidade da agenda da barbearia.
-3. REEMBOLSO
-•Após o pagamento da assinatura, não haverá reembolso parcial ou total em caso de desistência ou não utilização dos serviços.
-•Em casos excepcionais (ex.: fechamento da unidade ou impossibilidade total de prestação de serviços), um reembolso proporcional poderá ser considerado.
-4. CANCELAMENTO
-•O cliente poderá solicitar o cancelamento a qualquer momento, sem multa, através do canal oficial de atendimento (WhatsApp ou e-mail informado).
-•O cancelamento será efetivado ao término do período vigente. Não haverá reembolso proporcional por dias não utilizados no mês corrente.
-5. CONDIÇÕES GERAIS
-•A barbearia se reserva o direito de revisar os valores e condições dos planos, mediante aviso prévio de 30 dias aos assinantes.
-•O não pagamento da renovação automática implicará no bloqueio do uso do plano até a regularização.
-6. ACEITE
+1. PLANOS E VALIDADE<br><br>
+•O Clube de Assinatura oferece planos mensais, renovados automaticamente a cada período de 30 dias.<br>
+•Os serviços inclusos em cada plano estão descritos na oferta comercial no momento da adesão.<br>
+2. REGRAS DE USO<br><br>
+•A assinatura é pessoal e intransferível. Apenas o titular cadastrado poderá utilizar os serviços inclusos no plano.<br>
+•O não uso dos serviços durante o período contratado não gera crédito para períodos futuros nem dá direito a reembolso.<br>
+•As visitas deverão ser agendadas previamente, conforme disponibilidade da agenda da barbearia.<br>
+3. REEMBOLSO<br><br>
+•Após o pagamento da assinatura, não haverá reembolso parcial ou total em caso de desistência ou não utilização dos serviços.<br>
+•Em casos excepcionais (ex.: fechamento da unidade ou impossibilidade total de prestação de serviços), um reembolso proporcional poderá ser considerado.<br>
+4. CANCELAMENTO<br><br>
+•O cliente poderá solicitar o cancelamento a qualquer momento, sem multa, através do canal oficial de atendimento (WhatsApp ou e-mail informado).<br>
+•O cancelamento será efetivado ao término do período vigente. Não haverá reembolso proporcional por dias não utilizados no mês corrente.<br>
+5. CONDIÇÕES GERAIS<br><br>
+•A barbearia se reserva o direito de revisar os valores e condições dos planos, mediante aviso prévio de 30 dias aos assinantes.<br>
+•O não pagamento da renovação automática implicará no bloqueio do uso do plano até a regularização.<br>
+6. ACEITE<br><br>
 •Ao realizar a adesão ao Clube de Assinatura, o cliente declara ter lido, compreendido e aceito todos os termos aqui dispostos.""")
         with open(POLITICA_PDF_PATH, "rb") as file:
             st.download_button(label="📄 Baixar PDF da Política de Uso",
